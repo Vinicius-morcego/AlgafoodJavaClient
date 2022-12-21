@@ -8,13 +8,14 @@ import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
 import com.algaworks.algafood.client.model.RestauranteResumoModel;
+import com.algaworks.algafood.client.model.input.RestauranteInput;
 
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class RestauranteClient {
 
-	private static final String RESOURCE_PATH = "/restaurantessss";
+	private static final String RESOURCE_PATH = "/restaurantes";
 	
 	private String url;
 	
@@ -33,5 +34,13 @@ public class RestauranteClient {
 		}
 	}
 	
-	
+	public void cadastrar(RestauranteInput restauranteInput) {		
+		try {
+			URI resourceUri = URI.create(url + RESOURCE_PATH);
+			restTemplate.postForObject(resourceUri, restauranteInput, RestauranteResumoModel.class);	
+					
+		} catch (RestClientResponseException e) {
+			 throw new ClientApiException(e.getMessage(), e);
+		}
+	}
 }

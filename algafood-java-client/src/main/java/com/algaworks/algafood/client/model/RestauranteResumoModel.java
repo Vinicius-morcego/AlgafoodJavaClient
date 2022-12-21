@@ -11,5 +11,8 @@ public class RestauranteResumoModel {
 	private String nome;
 	private BigDecimal taxaFrete;
 	private CozinhaModel cozinha;
+	private boolean ativo;
+	private boolean aberto;
+	
 
 }
